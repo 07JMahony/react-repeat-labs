@@ -20,7 +20,7 @@ const root = {
 const chip = { margin: 0.5 };
 
 const MovieDetails = ( props) => {
-  const movie = props.movie
+  const movie = props.movie;
 
   return (
     <>
@@ -44,6 +44,8 @@ const MovieDetails = ( props) => {
             <Chip label={g.name} sx={{...chip}} />
           </li>
         ))}
+
+
       </Paper>
       <Paper component="ul" sx={{...root}}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
@@ -69,6 +71,26 @@ const MovieDetails = ( props) => {
         <NavigationIcon />
         Reviews
       </Fab>
+
+
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Production Countries" sx={{...chip}} color="primary" />
+        </li>
+        {movie.production_countries.map((pc) => (
+          <li key={pc.name}>
+            <Chip label={pc.name} sx={{...chip}} />
+          </li>
+        ))}
+
+
+      </Paper>
+
+
+
       </>
   );
 };
