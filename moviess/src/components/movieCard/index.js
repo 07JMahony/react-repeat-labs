@@ -19,16 +19,16 @@ import Avatar from '@mui/material/Avatar'
 export default function MovieCard(props) {
   const movie = props.movie;
 
-  const handleAddToFavourite = (e) => {
+  const handleAddToFavorite = (e) => {
     e.preventDefault();
-    props.selectFavourite(movie.id);
+    props.selectFavorite(movie.id);
   };
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
-          movie.favourite ? (
+          movie.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
               <FavoriteIcon />
             </Avatar>
@@ -65,7 +65,7 @@ export default function MovieCard(props) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-      <IconButton aria-label="add to favourites" onClick={handleAddToFavourite}>
+      <IconButton aria-label="add to favourites" onClick={handleAddToFavorite}>
         <FavoriteIcon color="primary" fontSize="large" />
     </IconButton>
         <Link to={`/movies/${movie.id}`}>
