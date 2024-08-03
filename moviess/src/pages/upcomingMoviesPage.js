@@ -12,15 +12,18 @@ import PlaylistAddIcon from "../components/cardIcons/addToPlaylist";
 const UpcomingMoviesPage = () => {
 
 
-  const [movies, setMovies] = useState([]);
+  const {  data, error, isLoading, isError }  = useQuery('discover', getUpcomingMovies)
+
+  if (isLoading) {
+    return <Spinner />
+  }
+
+  if (isError) {
+    return <h1>{error.message}</h1>
+  }  
+  const movies = data.results;
 
 
-  useEffect(() => {
-    // Fetch upcoming movies from the TMDB API.
-    getUpcomingMovies().then(upcomingMovies => {
-      setMovies(upcomingMovies);
-    });
-  }, []);
 
   return (
     <PageTemplate
