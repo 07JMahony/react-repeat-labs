@@ -76,8 +76,9 @@ export const getMovie = (args) => {
 
   export const getUpcomingMovies = () => {
     return fetch(
-`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
-    ).then((response) => {
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+    )
+      .then((response) => {
       if (!response.ok) {
         throw new Error(response.json().message);
       }
@@ -86,5 +87,18 @@ export const getMovie = (args) => {
     .catch((error) => {
        throw error
     });
+  };
+
+  export const getLatestMovies = (page = 1) => {
+    return fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=${page}`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .catch(error => {
+        throw error;
+      });
   };
   
